@@ -1,0 +1,60 @@
+<body class="container-fluid">
+    <header>
+        {{> jumboT}}
+    </header>
+
+    <div class="container">
+        <div class="row">
+            {{#each sites}}
+                {{> siteT}}
+            {{/each}}
+        </div>
+    </div>
+    <br>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form id="edit-form-site">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modifier</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="lieu">Lieu</label>
+                            <input type="text" class="form-control" id="edit-lieu" name="editLieu" placeholder="Lieu">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea class="form-control" name="editDescription" id="edit-description" cols="30" rows="10"></textarea>
+                        </div>
+                    </div>
+                    <input type="hidden" id="edit-id" name="editId">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn-update btn btn-primary">Sauvegarde</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+<template name="jumboT">
+    <div class="jumbotron">
+        <h1 class="display-4">Sites Prestigieux</h1>
+        <p class="lead">Votre mission, si toute fois vous l'acceptez, sera d'aider le capitaine La Buse à modifier le descriptif des sites les plus prestigieux de 3 Bassins.</p>
+        <hr class="my-4">
+        <p>Vous pouvez ajouter un lieu en complétant les champs nom et descriptif.</p>
+
+        <form class="new-site">
+            <input type="text" name="titreLieu" placeholder="Ajouter un nom de lieu"/>
+            <input type="text" name="descriptifLieu" placeholder="Ajouter un descriptif du lieu"/>
+            <button type="submit" name="button" class="btn btn-secondary">Ajouter</button>
+        </form>
+    </div>
+</template>

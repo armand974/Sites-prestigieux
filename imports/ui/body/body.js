@@ -1,9 +1,9 @@
 import { Template } from 'meteor/templating'
 
-import { Sites } from '../api/sites.js'
+import { Sites } from '../../api/sites.js'
 
-import './site.js';
-import './body.html'
+import '../site/site.js';
+import './body.html';
 
 
 Template.body.helpers({
@@ -32,6 +32,24 @@ Template.body.events({
     // Clear form
     target.titreLieu.value = ''
     target.descriptifLieu.value = ''
+  },
+  //When submitted the modal edit form
+  'submit #edit-form-site' (evt){
+    evt.preventDefault();
+
+    // Get value from form element
+    const target = event.target
+    const titreLieu = target.editLieu.value
+    const descriptifLieu = target.editDescription.value
+    const id = target.editId.value
+    
+    //update site
+    Sites.update(id, {
+      $set: { titreLieu,  descriptifLieu}
+    });
+
+    //close modal
+    $('#exampleModal').modal('hide')
   }
 })
 
